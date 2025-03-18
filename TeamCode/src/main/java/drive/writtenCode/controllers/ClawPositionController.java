@@ -20,11 +20,11 @@ public class ClawPositionController {
     }
     public ClawPositionStatus currentStatus = ClawPositionStatus.INIT;
     public ClawPositionStatus previousStatus=null;
-    public static double init_position=0.72;
-    public static double collect_position = 0.72; //0.54
-    public static double sub_position = 0.07;
+    public static double init_position=0.74;
+    public static double collect_position = 0.75; //0.54
+    public static double sub_position = 0.09;
     public static double perp_position = 0.45;
-    public static double collect_sub_position = 0.13;
+    public static double collect_sub_position = 0.16;
     public static double perimeter = 0.45;
     public  static  double rung_position = 0.18;
     public static  double rung_side_retract = 0.35;

@@ -116,12 +116,12 @@ public class AutoBsk extends LinearOpMode {
     final Pose scoreSubPose = new Pose(22,133.5,Math.toRadians(327));
     final Pose scorePose = new Pose(19, 132, Math.toRadians(327));
     final Pose scorePose2 = new Pose(19,132, Math.toRadians(327)); //4 129.5
-    final Pose scorePose3 = new Pose(19,132, Math.toRadians(327));
+    final Pose scorePose3 = new Pose(20,132, Math.toRadians(327));
 //    final Pose pickup1InterPose = new Pose(29,118,Math.toRadians(0));
-    final Pose pickup1Pose = new Pose(37.2, 123.5, Math.toRadians(347));
-    final Pose pickup2Pose = new Pose(37,131,Math.toRadians(0)); //41 19
+    final Pose pickup1Pose = new Pose(37.2, 123.3, Math.toRadians(347));
+    final Pose pickup2Pose = new Pose(37,132.3,Math.toRadians(0)); //41 19
     final Pose pickup3PoseInter = new Pose(30,130,Math.toRadians(90));
-    final Pose pickup3Pose = new Pose(39,133.5,Math.toRadians(22));
+    final Pose pickup3Pose = new Pose(39,133,Math.toRadians(22));
     final Pose subPoseInter = new Pose(60,110,Math.toRadians(270));
 
     double[]Sx =PersistentData.subX;
@@ -140,7 +140,7 @@ public class AutoBsk extends LinearOpMode {
     private MihneaDetection pipeline;
     int cycle = 1;
     int i=1;
-    int nr_frames=3;
+    int nr_frames=1;
     double nr_slides=1;
 
     @Override
@@ -273,24 +273,24 @@ public class AutoBsk extends LinearOpMode {
                         clawRotate.currentStatus= ClawRotateController.ClawRotateStatus.PICKUP1;
                         slides_target_position = -16800;
                     }
-                    if(TimerPickup.seconds()>1.2 && claw.currentStatus!= ClawController.ClawStatus.CLOSE)
+                    if(TimerPickup.seconds()>1.3 && claw.currentStatus!= ClawController.ClawStatus.CLOSE)
                     {
                         fourbar.currentStatus = FourbarController.FourbarStatus.COLLECT_SUB;
                         clawPosition.currentStatus = ClawPositionController.ClawPositionStatus.COLLECT_SUB;
-                        if (TimerPickup.seconds() > 1.4) {
+                        if (TimerPickup.seconds() > 1.5) {
                             claw.currentStatus = ClawController.ClawStatus.CLOSE;
                         }
                     }
-                    if(TimerPickup.seconds()>1.6)
+                    if(TimerPickup.seconds()>1.7)
                     {
                         scoreSystem.currentStatus= ScoreSystemController.ScoreSystemStatus.COLLECT_FROM_SUB;
                     }
-                    if(TimerPickup.seconds()>1.6)
+                    if(TimerPickup.seconds()>1.7)
                     {
                         slides.currentStatus= SlidesController.SlidesStatus.INIT;
                         linkage.currentStatus= LinkageController.LinkageStatus.INIT;
                     }
-                    if(TimerPickup.seconds()>1.6)
+                    if(TimerPickup.seconds()>1.7)
                     {
                         follower.holdPoint(scorePose);
                         scoreSystem.currentStatus= ScoreSystemController.ScoreSystemStatus.INIT_AUTO;
@@ -352,29 +352,29 @@ public class AutoBsk extends LinearOpMode {
                         linkage.currentStatus= LinkageController.LinkageStatus.COLLECT;
                         slides.currentStatus= SlidesController.SlidesStatus.AUTO;
                     }
-                    if(TimerPickup.seconds()>0.7)
+                    if(TimerPickup.seconds()>0.8)
                     {
                         slides.currentStatus = SlidesController.SlidesStatus.AUTO_RUNTO;
-                        slides_target_position = -18000;
+                        slides_target_position = -18500;
                     }
-                    if(TimerPickup.seconds()>1.1 && claw.currentStatus!= ClawController.ClawStatus.CLOSE)
+                    if(TimerPickup.seconds()>1.2 && claw.currentStatus!= ClawController.ClawStatus.CLOSE)
                     {
                         fourbar.currentStatus = FourbarController.FourbarStatus.COLLECT_SUB;
                         clawPosition.currentStatus = ClawPositionController.ClawPositionStatus.COLLECT_SUB;
-                        if (TimerPickup.seconds() > 1.2) {
+                        if (TimerPickup.seconds() > 1.3) {
                             claw.currentStatus = ClawController.ClawStatus.CLOSE;
                         }
                     }
-                    if(TimerPickup.seconds()>1.3)
+                    if(TimerPickup.seconds()>1.5)
                     {
                         scoreSystem.currentStatus= ScoreSystemController.ScoreSystemStatus.COLLECT_FROM_SUB;
                     }
-                    if(TimerPickup.seconds()>1.3)
+                    if(TimerPickup.seconds()>1.5)
                     {
                         slides.currentStatus= SlidesController.SlidesStatus.INIT;
                         linkage.currentStatus= LinkageController.LinkageStatus.INIT;
                     }
-                    if(TimerPickup.seconds()>1.3)
+                    if(TimerPickup.seconds()>1.5)
                     {
                         follower.holdPoint(scorePose2);
                         scoreSystem.currentStatus= ScoreSystemController.ScoreSystemStatus.INIT_AUTO;
@@ -434,7 +434,7 @@ public class AutoBsk extends LinearOpMode {
                     if(TimerPickup.seconds()>0.8)
                     {
                         slides.currentStatus = SlidesController.SlidesStatus.AUTO_RUNTO;
-                        slides_target_position = -21200;
+                        slides_target_position = -20400;
                     }
                     if(TimerPickup.seconds()>1.4 && claw.currentStatus!= ClawController.ClawStatus.CLOSE)
                     {
@@ -444,16 +444,16 @@ public class AutoBsk extends LinearOpMode {
                             claw.currentStatus = ClawController.ClawStatus.CLOSE;
                         }
                     }
-                    if(TimerPickup.seconds()>1.6)
+                    if(TimerPickup.seconds()>1.7)
                     {
                         scoreSystem.currentStatus= ScoreSystemController.ScoreSystemStatus.COLLECT_FROM_SUB;
                     }
-                    if(TimerPickup.seconds()>1.6)
+                    if(TimerPickup.seconds()>1.7)
                     {
                         slides.currentStatus= SlidesController.SlidesStatus.INIT;
                         linkage.currentStatus= LinkageController.LinkageStatus.INIT;
                     }
-                    if(TimerPickup.seconds()>1.6)
+                    if(TimerPickup.seconds()>1.7)
                     {
                         follower.holdPoint(scorePose3);
                         scoreSystem.currentStatus= ScoreSystemController.ScoreSystemStatus.INIT_AUTO;
@@ -526,7 +526,7 @@ public class AutoBsk extends LinearOpMode {
                         }
                         case 4:
                         {
-                            follower.followPath(sub4,true);
+//                            follower.followPath(sub4,true);
                             status=SUB;
                             break;
                         }
@@ -557,24 +557,23 @@ public class AutoBsk extends LinearOpMode {
                                 follower.holdPoint(subPose3);
                                 break;
                             case 4:
-                                follower.holdPoint(subPose4);
+//                                follower.holdPoint(subPose4);
                                 break;
                         }
                     }
-                    if(TimerCollect.seconds()>1.35)
-                    {
-                        linkage.currentStatus= LinkageController.LinkageStatus.DETECTION;
-                        fourbar.currentStatus= FourbarController.FourbarStatus.DETECTION;
-                    }
-                    if(TimerCollect.seconds()>1.7)
-                    {
-                        slides.currentStatus= SlidesController.SlidesStatus.DETECTION;
-                    }
-                    if(TimerCollect.seconds()>2.6)
-                    {
-                        TimerDetection.reset();
-                        i=1;
-                        status=DETECT;
+                    if(cycle!=4) {
+                        if (TimerCollect.seconds() > 1.35) {
+                            linkage.currentStatus = LinkageController.LinkageStatus.DETECTION;
+                            fourbar.currentStatus = FourbarController.FourbarStatus.DETECTION;
+                        }
+                        if (TimerCollect.seconds() > 1.7) {
+                            slides.currentStatus = SlidesController.SlidesStatus.DETECTION;
+                        }
+                        if (TimerCollect.seconds() > 2.6) {
+                            TimerDetection.reset();
+                            i = 1;
+                            status = DETECT;
+                        }
                     }
                     break;
                 }
@@ -627,34 +626,31 @@ public class AutoBsk extends LinearOpMode {
                 }
                 case SUB_COLLECT:
                 {
+                        org.opencv.core.Point center = detectedPoints.get(0).point;
+                        double centerY = center.y;
+                        if (centerY >= 281 && centerY < 316) {
+                            clawPosition.currentStatus = ClawPositionController.ClawPositionStatus.BACKWARDS;
+                        } else if (centerY >= 247 && centerY < 281) {
+                            clawPosition.currentStatus = ClawPositionController.ClawPositionStatus.BACKWARDS;
+                        } else if (centerY >= 215 && centerY < 247) {
+                            clawPosition.currentStatus = ClawPositionController.ClawPositionStatus.BACKWARDS;
+                        } else if (centerY >= 183 && centerY < 215) {
+                            clawPosition.currentStatus = ClawPositionController.ClawPositionStatus.BACKWARDS;
+                        }
 
-                    org.opencv.core.Point center = detectedPoints.get(0).point;
-                    double centerY = center.y;
-                    if (centerY >= 281 && centerY < 316) {
-                        clawPosition.currentStatus= ClawPositionController.ClawPositionStatus.BACKWARDS;
-                    } else if (centerY >= 247 && centerY < 281) {
-                        clawPosition.currentStatus= ClawPositionController.ClawPositionStatus.BACKWARDS;
-                    } else if (centerY >= 215 && centerY < 247) {
-                        clawPosition.currentStatus= ClawPositionController.ClawPositionStatus.BACKWARDS;}
-                    else if (centerY >= 183 && centerY < 215) {
-                        clawPosition.currentStatus= ClawPositionController.ClawPositionStatus.BACKWARDS;}
 
-
-                    angle = detectedPoints.get(0).angle;
-                    Pose current_pose=follower.getPose();
-                    Pose aligned;
-                    if(center.x>320)
-                    {
-                        aligned = new Pose(current_pose.getX() + (320-center.x)*0.035, current_pose.getY(),current_pose.getHeading());
-                    }
-                    else
-                    {
-                        aligned = new Pose(current_pose.getX() + (320-center.x)*0.044, current_pose.getY(),current_pose.getHeading());
-                    }
-                    Path path;
-                    path= new Path(new BezierLine(new Point(current_pose),new Point(aligned)));
-                    path.setConstantHeadingInterpolation(current_pose.getHeading());
-                    path.setPathEndTranslationalConstraint(0.1);
+                        angle = detectedPoints.get(0).angle;
+                        Pose current_pose = follower.getPose();
+                        Pose aligned;
+                        if (center.x > 320) {
+                            aligned = new Pose(current_pose.getX() + (320 - center.x) * 0.035, current_pose.getY(), current_pose.getHeading());
+                        } else {
+                            aligned = new Pose(current_pose.getX() + (320 - center.x) * 0.035, current_pose.getY(), current_pose.getHeading());
+                        }
+                        Path path;
+                        path = new Path(new BezierLine(new Point(current_pose), new Point(aligned)));
+                        path.setConstantHeadingInterpolation(current_pose.getHeading());
+                        path.setPathEndTranslationalConstraint(0.1);
 //                    if(center.y<200) {
 //                        slides_target_position = 75 * (int) center.y - 20034;
 //                    }
@@ -662,67 +658,100 @@ public class AutoBsk extends LinearOpMode {
 //                    {
 //                        slides_target_position = 83 * (int) center.y - 20034;
 //                    }
-                     // Extract the y value
-                    if (centerY >= 281 && centerY < 316) {
-                        slides_target_position = 0; nr_slides=1;
-                    } else if (centerY >= 247 && centerY < 281) {
-                        slides_target_position = 0; nr_slides=2;
-                    } else if (centerY >= 215 && centerY < 247) {
-                        slides_target_position = -3400; nr_slides=3; //2700
-                    } else if (centerY >= 183 && centerY < 215) {
-                        slides_target_position = -7100; nr_slides=4;
-                    } else if (centerY >= 156 && centerY < 183) {
-                        slides_target_position = -8700; nr_slides=5;
-                    } else if (centerY >= 127 && centerY < 156) {
-                        slides_target_position = -11000; nr_slides=6;
-                    } else if (centerY >= 100 && centerY < 127) {
-                        slides_target_position = -14000; nr_slides=7;
-                    } else if (centerY >= 73 && centerY < 100) {
-                        slides_target_position = -17500; nr_slides=8;
-                    } else if (centerY >= 62 && centerY < 73) {
-                        slides_target_position = -19150; nr_slides=8.5;
-                    } else if (centerY >= 50 && centerY < 62) {
-                        slides_target_position = -20800; nr_slides=9;
-                    } else if (centerY >= 38 && centerY < 50) {
-                        slides_target_position = -21750; nr_slides=9.5;
-                    } else if (centerY >= 27 && centerY < 38) {
-                        slides_target_position = -22700; nr_slides=10;
+                        // Extract the y value
+//                    if (centerY >= 281 && centerY < 316) {
+//                        slides_target_position = 0;
+//                        nr_slides = 1;
+//                    } else if (centerY >= 247 && centerY < 281) {
+//                        slides_target_position = -3400; //0
+//                        nr_slides = 2;
+//                    } else if (centerY >= 215 && centerY < 247) {
+//                        slides_target_position = -7100; //-3400
+//                        nr_slides = 3; //2700
+//                    } else if (centerY >= 183 && centerY < 215) {
+//                        slides_target_position = -8700; //7100
+//                        nr_slides = 4;
+//                    } else if (centerY >= 156 && centerY < 183) {
+//                        slides_target_position = -11000; //8700
+//                        nr_slides = 5;
+//                    } else if (centerY >= 127 && centerY < 156) {
+//                        slides_target_position = -14000; //11000
+//                        nr_slides = 6;
+//                    } else if (centerY >= 100 && centerY < 127) {
+//                        slides_target_position = -17500; //14000
+//                        nr_slides = 7;
+//                    } else if (centerY >= 73 && centerY < 100) {
+//                        slides_target_position = -19150; //17500
+//                        nr_slides = 8;
+//                    } else if (centerY >= 62 && centerY < 73) {
+//                        slides_target_position = -20800; //19150
+//                        nr_slides = 8.5;
+//                    } else if (centerY >= 50 && centerY < 62) {
+//                        slides_target_position = -21750; //20800
+//                        nr_slides = 9;
+//                    } else if (centerY >= 38 && centerY < 50) {
+//                        slides_target_position = -22700; //21750
+//                        nr_slides = 9.5;
+//                    } else if (centerY >= 27 && centerY < 38) {
+//                        slides_target_position = -24700; //22700
+//                        nr_slides = 10;
+//                    } else if (centerY >= 0 && centerY < 27) {
+//                        slides_target_position = -24700;
+//                        nr_slides = 11;
+//                    }
+                    if (centerY >= 260) {
+                        slides_target_position = 0;
+                        nr_slides = 1;
+                    } else if (centerY >= 227 && centerY < 260) {
+                        slides_target_position = -3700; //0
+                        nr_slides = 2;
+                    } else if (centerY >= 195 && centerY < 227) {
+                        slides_target_position = -7400; //-3400
+                        nr_slides = 3; //2700
+                    } else if (centerY >= 163 && centerY < 195) {
+                        slides_target_position = -9000; //7100
+                        nr_slides = 4;
+                    } else if (centerY >= 133 && centerY < 163) {
+                        slides_target_position = -11300; //8700
+                        nr_slides = 5;
+                    } else if (centerY >= 103 && centerY < 133) {
+                        slides_target_position = -14300; //11000
+                        nr_slides = 6;
+                    } else if (centerY >= 73 && centerY < 103) {
+                        slides_target_position = -17800; //14000
+                        nr_slides = 7;
+                    } else if (centerY >= 43 && centerY < 73) {
+                        slides_target_position = -19450; //17500
+                        nr_slides = 8;
+                    } else if (centerY >= 28 && centerY < 43) {
+                        slides_target_position = -21100; //19150
+                        nr_slides = 8.5;
+                    } else if (centerY >= 13 && centerY < 28) {
+                        slides_target_position = -22050; //20800
+                        nr_slides = 9;
                     }
-                    else if(centerY >= 0 && centerY < 27)
-                    {
-                        slides_target_position = -24700; nr_slides=11;
-                    }
+//                    else if (centerY >= 38 && centerY < 50) {
+//                        slides_target_position = -22700; //21750
+//                        nr_slides = 9.5;
+//                    } else if (centerY >= 27 && centerY < 38) {
+//                        slides_target_position = -24700; //22700
+//                        nr_slides = 10;
+//                    } else if (centerY >= 0 && centerY < 27) {
+//                        slides_target_position = -24700;
+//                        nr_slides = 11;
+//                    }
 
-                    follower.followPath(path);
-                    TimerSub.reset();
-                    status=SLIDES_SUB;
+                        follower.followPath(path);
+                        TimerSub.reset();
+                        status = SLIDES_SUB;
+
                     break;
                 }
                 case SLIDES_SUB:
                 {
-                    if(TimerSub.seconds()>0.4) {
+                    if(TimerSub.seconds()>0.4 && claw.currentStatus== ClawController.ClawStatus.OPEN) {
                         slides.currentStatus = SlidesController.SlidesStatus.AUTO_RUNTO;
                         clawPosition.currentStatus= ClawPositionController.ClawPositionStatus.SUB;
-//                       if((angle >=0 && angle<=13) || (angle <=180 && angle>=167))
-//                       {
-//                           clawRotate.currentStatus= ClawRotateController.ClawRotateStatus.INIT;
-//                       }
-//                        else if(angle >13 && angle<=49)
-//                        {
-//                            clawRotate.currentStatus= ClawRotateController.ClawRotateStatus.PLUS;
-//                        }
-//                        else if(angle >49 && angle<=90)
-//                       {
-//                           clawRotate.currentStatus= ClawRotateController.ClawRotateStatus.PLUS2;
-//                       }
-//                        else if(angle>90 && angle<=131)
-//                       {
-//                           clawRotate.currentStatus= ClawRotateController.ClawRotateStatus.MINUS2;
-//                       }
-//                       else if(angle>131 && angle<167)
-//                       {
-//                           clawRotate.currentStatus= ClawRotateController.ClawRotateStatus.MINUS;
-//                       }
                         if(angle>0 && angle<=90)
                         {
                             clawRotate.currentStatus= ClawRotateController.ClawRotateStatus.RUNTO;
@@ -747,16 +776,17 @@ public class AutoBsk extends LinearOpMode {
                             claw.currentStatus = ClawController.ClawStatus.CLOSE;
                         }
                     }
-                    if(TimerSub.seconds()>delay_collect+0.3)
+                    if(TimerSub.seconds()>delay_collect+0.4)
                     {
                         fourbar.currentStatus= FourbarController.FourbarStatus.SUB;
                     }
-                    if(TimerSub.seconds()>delay_collect+0.4)
+                    if(TimerSub.seconds()>delay_collect+0.5)
                     {
+                        clawPosition.currentStatus= ClawPositionController.ClawPositionStatus.BACKWARDS;
                         slides.currentStatus= SlidesController.SlidesStatus.INIT;
                         linkage.currentStatus= LinkageController.LinkageStatus.INIT;
                     }
-                    if(TimerSub.seconds()>delay_collect+0.4 && !follower.isBusy()) {
+                    if(TimerSub.seconds()>delay_collect+0.5 && !follower.isBusy()) {
                         final Point scorePoint = new Point(follower.getPose().getX(), 103); //112
                         final Point scorePoint2 = new Point(34, 112);
                         score1 = new Path(new BezierCurve(new Point(follower.getPose())/*, scorePoint, scorePoint2*/, new Point(interPose)));

@@ -108,10 +108,10 @@ public class AutoSpecimenPush extends LinearOpMode {
     final Point deliver2Point = new Point(59, 8, Point.CARTESIAN);
 
     final Pose pickup3Pose = new Pose(47,14,Math.toRadians(0)); //53
-    final Pose deliver3Pose = new Pose(21,13,Math.toRadians(0));
+    final Pose deliver3Pose = new Pose(21,15,Math.toRadians(0));
 //    final Point deliver3Point = new Point(70, 2.6, Point.CARTESIAN);
-    final Pose failsafe_pose1 = new Pose(22,13,Math.toRadians(0));
-    final Pose specimen1Pose = new Pose(9,13,Math.toRadians(0)); //13.1 32.5
+    final Pose failsafe_pose1 = new Pose(22,15,Math.toRadians(0));
+    final Pose specimen1Pose = new Pose(9,15,Math.toRadians(0)); //13.1 32.5
     //    final Point specimen1Point1 = new Point(31, 21, Point.CARTESIAN);
     final Point specimen1Point1 = new Point(34.3, 39, Point.CARTESIAN);
     final Point specimen1Point2 = new Point(28, 32.5, Point.CARTESIAN);
@@ -120,32 +120,32 @@ public class AutoSpecimenPush extends LinearOpMode {
     final Pose specimen1ScorePose = new Pose(42.5 , 76, Math.toRadians(0));
 
     final Pose failsafe_pose2 = new Pose(22,34,Math.toRadians(0));
-    final Pose specimen2Pose = new Pose(11.4,33.5,Math.toRadians(0)); //11.4
+    final Pose specimen2Pose = new Pose(11,33.5,Math.toRadians(0)); //11.4
     final Point specimen2Point1 = new Point(28, 52, Point.CARTESIAN);
     final Point specimen2Point2 = new Point(51, 33.5, Point.CARTESIAN);
     final Pose specimen2ScorePose = new Pose(43, 74, Math.toRadians(0));
 
     final Pose failsafe_pose3 = new Pose(22,32.5,Math.toRadians(0));
-    final Pose specimen3Pose = new Pose(11.4,33.5,Math.toRadians(0)); //11.4
+    final Pose specimen3Pose = new Pose(11,33.5,Math.toRadians(0)); //11.4
     final Point specimen3Point1 = new Point(28, 52, Point.CARTESIAN);
     final Point specimen3Point2 = new Point(51, 33.5, Point.CARTESIAN);
     final Pose specimen3ScorePose = new Pose(43, 72, Math.toRadians(0));
 
     final Pose failsafe_pose4 = new Pose(22,32.5,Math.toRadians(0));
-    final Pose specimen4Pose = new Pose(11.4,33.5,Math.toRadians(0));//11.4
+    final Pose specimen4Pose = new Pose(11,33.5,Math.toRadians(0));//11.4
     final Point specimen4Point1 = new Point(28, 52, Point.CARTESIAN);
     final Point specimen4Point2 = new Point(51, 33.5, Point.CARTESIAN);
     final Pose specimen4ScorePose = new Pose(43, 71, Math.toRadians(0));
 
     final Pose parkPose =new Pose(13,32.4, Math.toRadians(0));
-    final Pose samplePose = new Pose(11.4,33.5,Math.toRadians(0));
+    final Pose samplePose = new Pose(12,33.5,Math.toRadians(0));
     final Point samplePoint1 = new Point(28, 52, Point.CARTESIAN);
     final Point samplePoint2 = new Point(51, 33.5, Point.CARTESIAN);
 
     final Point basketPoint1 = new Point(15.514, 33.5, Point.CARTESIAN);
     final Point basketPoint2 = new Point(12.6,93.52);
     final Pose basketPoseInter = new Pose(14,119, Math.toRadians(90));
-    final Pose basketPose = new Pose(10, 145, Math.toRadians(135));
+    final Pose basketPose = new Pose(10, 143, Math.toRadians(135));
 
 
     @Override
@@ -410,7 +410,7 @@ public class AutoSpecimenPush extends LinearOpMode {
                 }
                 case GRAB_SPECIMEN1:
                 {
-                    if(TimerDeliver.seconds()>1.2)
+                    if(TimerDeliver.seconds()>1.5)
                     {
                         robot.sweep.setPosition(sweeper_inactive);
                     }
@@ -631,7 +631,7 @@ public class AutoSpecimenPush extends LinearOpMode {
                         linkageSlides.currentStatus = LinkageSlidesController.LinkageSlidesStatus.HIGH_RUNG;
                         ok=true;
                     }
-                    if((TimerScore.seconds()>1.3 && follower.getPose().getX()>specimen4ScorePose.getX()-1 && linkageSlides.currentStatus == LinkageSlidesController.LinkageSlidesStatus.HIGH_RUNG)
+                    if((TimerScore.seconds()>1 && follower.getPose().getX()>specimen4ScorePose.getX()-1 && linkageSlides.currentStatus == LinkageSlidesController.LinkageSlidesStatus.HIGH_RUNG)
                             || TimerScore.seconds()>2)
                     {
                         linkageSlides.currentStatus= LinkageSlidesController.LinkageSlidesStatus.HIGH_RUNG_SCORE;
@@ -641,6 +641,7 @@ public class AutoSpecimenPush extends LinearOpMode {
                     {
                         ok=false;
                         linkageSlides.currentStatus = LinkageSlidesController.LinkageSlidesStatus.INIT;
+                        scoreSystem.currentStatus = ScoreSystemController.ScoreSystemStatus.INIT;
                         status=BASKET_INTER;
                     }
                     else if(!follower.isBusy() && TimerScore.seconds()>1.7  && linkageSlides.currentStatus == LinkageSlidesController.LinkageSlidesStatus.HIGH_RUNG_SCORE)
@@ -649,7 +650,6 @@ public class AutoSpecimenPush extends LinearOpMode {
                         fourbar.currentStatus= FourbarController.FourbarStatus.COLLECT_SAMPLE;
                         follower.followPath(sample);
                     }
-
                     break;
                 }
                 case BASKET_INTER:

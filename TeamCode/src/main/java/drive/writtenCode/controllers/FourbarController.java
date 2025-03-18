@@ -21,7 +21,7 @@ public class FourbarController {
     }
     public FourbarStatus currentStatus = FourbarStatus.INIT;
     public FourbarStatus previousStatus=null;
-    public static double init_position=0.88;
+    public static double init_position=0.86;
     public static double rung_position = 0.30;
     public static double perimeter = 0.76;
     public static double sub_inter_position = 0.53;

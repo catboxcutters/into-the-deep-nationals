@@ -98,11 +98,55 @@ public class teleoptest2 extends LinearOpMode {
                 clawRotateController.currentStatus= ClawRotateController.ClawRotateStatus.RUNTO;
                 claw_rotate_target = 0.00322*orientation - 0.0596;
             }
+            double nr_slides=0;
+            double centerY=center.y;
+            int slides_target_position = 0;
+            if (centerY >= 281 && centerY < 316) {
+                slides_target_position = 0;
+                nr_slides = 1;
+            } else if (centerY >= 247 && centerY < 281) {
+                slides_target_position = -3400; //0
+                nr_slides = 2;
+            } else if (centerY >= 215 && centerY < 247) {
+                slides_target_position = -7100; //-3400
+                nr_slides = 3; //2700
+            } else if (centerY >= 183 && centerY < 215) {
+                slides_target_position = -8700; //7100
+                nr_slides = 4;
+            } else if (centerY >= 156 && centerY < 183) {
+                slides_target_position = -11000; //8700
+                nr_slides = 5;
+            } else if (centerY >= 127 && centerY < 156) {
+                slides_target_position = -14000; //11000
+                nr_slides = 6;
+            } else if (centerY >= 100 && centerY < 127) {
+                slides_target_position = -17500; //14000
+                nr_slides = 7;
+            } else if (centerY >= 73 && centerY < 100) {
+                slides_target_position = -19150; //17500
+                nr_slides = 8;
+            } else if (centerY >= 62 && centerY < 73) {
+                slides_target_position = -20800; //19150
+                nr_slides = 8.5;
+            } else if (centerY >= 50 && centerY < 62) {
+                slides_target_position = -21750; //20800
+                nr_slides = 9;
+            } else if (centerY >= 38 && centerY < 50) {
+                slides_target_position = -22700; //21750
+                nr_slides = 9.5;
+            } else if (centerY >= 27 && centerY < 38) {
+                slides_target_position = -24700; //22700
+                nr_slides = 10;
+            } else if (centerY >= 0 && centerY < 27) {
+                slides_target_position = -24700;
+                nr_slides = 11;
+            }
             if (center != null) {
                 telemetry.addData("Center Coordinate", String.format("(%.2f, %.2f)", center.x, center.y));
             } else {
                 telemetry.addData("Center Coordinate", "Not detected");
             }
+            telemetry.addData("nr_slides", nr_slides);
             telemetry.addData("Orientation", String.format("%.2f", orientation));
             telemetry.addData("EncoderSlides", robot.encoderSlides.getCurrentPosition());
             telemetry.addData("linkageencoder", robot.encoderLinkage.getCurrentPosition());

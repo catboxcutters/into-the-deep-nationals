@@ -14,7 +14,7 @@ public class MihneaDetection extends OpenCvPipeline {
     public MihneaDetection(Telemetry telemetry) {
         this.telemetry = telemetry;
     }
-    private static final Scalar LOWER_YELLOW = new Scalar(20, 100, 80);
+    private static final Scalar LOWER_YELLOW = new Scalar(20, 140, 180); //20 120 180
     private static final Scalar UPPER_YELLOW = new Scalar(35, 255, 255);
 
     private static final int CONTOUR_THRESH_LOW = 500;
@@ -43,7 +43,7 @@ public class MihneaDetection extends OpenCvPipeline {
         HEIGHT = (int) (WIDTH/aspect_ratio);
         Size image_size= new Size(WIDTH,480);
         Imgproc.resize(input, input, image_size);
-        Point img_center = new Point((double) WIDTH /2, (double) 480 /2+30);
+        Point img_center = new Point((double) WIDTH /2, (double) 480 /2+10);
 
         // Convert input to HSV
         Imgproc.cvtColor(input, hsv, Imgproc.COLOR_RGB2HSV);
@@ -128,7 +128,7 @@ public class MihneaDetection extends OpenCvPipeline {
                 angles.add(angle);
                 Point center = rectangle.center;
                 double distance = Math.sqrt((center.x - img_center.x)*(center.x - img_center.x) + (center.y - img_center.y)*(center.y - img_center.y));
-                if (minDist > distance && center.y<264) {
+                if (minDist > distance && center.y<300) {
                  minDist = distance;
                  closestPoint = center;
                  closestOrientation = angle;
@@ -143,6 +143,16 @@ public class MihneaDetection extends OpenCvPipeline {
         Imgproc.drawContours(input, samples, -1, new Scalar(0, 255, 0), 2);
 
         Imgproc.circle(input, img_center, 2, new Scalar(255,255,255),-1);
+        Imgproc.circle(input, new Point(100,295), 2, new Scalar(0,0,0),-1);
+        Imgproc.circle(input, new Point(100,260), 2, new Scalar(0,0,0),-1);
+        Imgproc.circle(input, new Point(100,227), 2, new Scalar(0,0,0),-1);
+        Imgproc.circle(input, new Point(100,195), 2, new Scalar(0,0,0),-1);
+        Imgproc.circle(input, new Point(100,163), 2, new Scalar(0,0,0),-1);
+        Imgproc.circle(input, new Point(100,133), 2, new Scalar(0,0,0),-1);
+        Imgproc.circle(input, new Point(100,103), 2, new Scalar(0,0,0),-1);
+        Imgproc.circle(input, new Point(100,73), 2, new Scalar(0,0,0),-1);
+        Imgproc.circle(input, new Point(100,43), 2, new Scalar(0,0,0),-1);
+        Imgproc.circle(input, new Point(100,13), 2, new Scalar(0,0,0),-1);
 
         if (closestPoint != null) {
             Imgproc.circle(input, closestPoint, 6, new Scalar(0, 0, 0), -1);
@@ -150,10 +160,10 @@ public class MihneaDetection extends OpenCvPipeline {
         closestAngle=closestOrientation;
         ClosestPoint=closestPoint;
         MinimumDistance = minDist;
-//        telemetry.addData("angle: ", closestOrientation);
-//        telemetry.addData("x: ", closestPoint.x);
-//        telemetry.addData("y: ", closestPoint.y);
-//        telemetry.update();
+        telemetry.addData("angle: ", closestOrientation);
+        telemetry.addData("x: ", closestPoint.x);
+        telemetry.addData("y: ", closestPoint.y);
+        telemetry.update();
 
         kernel.release();
         hsv.release();

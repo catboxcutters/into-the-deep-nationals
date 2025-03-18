@@ -188,7 +188,7 @@ public class ScoreSystemController
                         if (timer.seconds() > 0.2) {
                             clawController.currentStatus = ClawController.ClawStatus.CLOSE;
                         }
-                        if(encoder_claw_position<2.53 && timer.seconds()>0.6 && timer.seconds()<0.7 && linkageController.currentStatus== LinkageController.LinkageStatus.COLLECT)
+                        if(encoder_claw_position<2.55 && timer.seconds()>0.6 && timer.seconds()<0.7 && linkageController.currentStatus== LinkageController.LinkageStatus.COLLECT)
                         {
                                 currentStatus=ScoreSystemStatus.COLLECT_FROM_SUB;
                                 clawController.currentStatus= ClawController.ClawStatus.OPEN;
